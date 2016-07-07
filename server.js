@@ -6,13 +6,12 @@ var routes = require('./app/routes/index.js');
 
 var app = express();
 
-mongo.connect('mongodb://localhost:27017/clementinejs', function (err, db) {
+// var mongoUrl = 'mongodb://localhost:27017/clementinejs';
+var mongoUrl = 'mongodb://devuser:devuser@ds015995.mlab.com:15995/fcc';
 
-   if (err) {
-      throw new Error('Database failed to connect!');
-   } else {
-      console.log('Successfully connected to MongoDB on port 27017.');
-   }
+mongo.connect(mongoUrl, function (err, db) {
+   if (err) throw new Error('Database failed to connect!');
+   else console.log('Successfully connected to MongoDB.');
 
    app.use('/public', express.static(process.cwd() + '/public'));
    app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
