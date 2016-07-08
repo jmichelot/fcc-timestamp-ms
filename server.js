@@ -3,7 +3,10 @@
 var express = require('express');
 var mongo = require('mongodb');
 var routes = require('./app/routes/index.js');
-var config = require('./config.js');
+var config;
+
+try { config = require('./config.js'); }
+catch (err) { console.log('module config not found.'); }
 
 var app = express();
 
